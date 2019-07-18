@@ -6,6 +6,14 @@ const server = express();
 server.use(express.json());
 server.use(logger);
 
+server.get('/', (req, res, next) => {
+  try {
+    res.status(200).send('<h3>Welcome to Recipe Book api</h3>')
+  } catch (error) {
+    next(new Error('Recipe Book api is unreachable. Kindly try later.'))
+  }
+})
+
 function logger(req, res, next) {
   console.log(
     `[${new Date().toISOString()}] ${req.method} request from ${req.url}`
