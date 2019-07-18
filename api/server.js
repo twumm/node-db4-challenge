@@ -2,9 +2,11 @@
 const express = require('express');
 
 const server = express();
+const recipesRouter = require('./recipes/recipesRouter');
 
 server.use(express.json());
 server.use(logger);
+server.use('/api/recipes', recipesRouter);
 
 server.get('/', (req, res, next) => {
   try {
