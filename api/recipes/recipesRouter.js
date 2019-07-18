@@ -22,4 +22,15 @@ router.get('/:id/shoppingList', async (req, res, next) => {
   }
 })
 
+router.get('/:id/instructions', async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const instructions = await recipesDb.getInstructions(id);
+    res.status(200).json(instructions);
+  } catch (error) {
+    next(new Error('We could not get the instructions'));
+  }
+})
+
+
 module.exports = router;
